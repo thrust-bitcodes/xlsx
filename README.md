@@ -1,5 +1,5 @@
-XLSX [![Build Status](https://travis-ci.org/thrust-bitcodes/xlsx.svg?branch=master)](https://travis-ci.org/thrust-bitcodes/xlsx) [![GitHub release](https://img.shields.io/github/release/thrust-bitcodes/xlsx.svg)](https://github.com/thrust-bitcodes/xlsx/releases)
-
+XLSX
+[![Build Status](https://travis-ci.org/thrust-bitcodes/xlsx.svg?branch=master)](https://travis-ci.org/thrust-bitcodes/xlsx) [![GitHub release](https://img.shields.io/github/release/thrust-bitcodes/xlsx.svg)](https://github.com/thrust-bitcodes/xlsx/releases)
 ===============
 
 XLSX é um *bitcode* de modelagem de xlsx para [thrust](https://github.com/thrustjs/thrust) que utiliza POI-XSSF como mecanismo de manipulação.
