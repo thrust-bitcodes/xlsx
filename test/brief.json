@@ -1,0 +1,19 @@
+{
+  "name": "xml-test",
+  "author": "Bruno Machado",
+  "dependencies": {
+    "bitcodes": [
+      "majesty"
+    ],
+    "jars": [
+      "commons-codec:commons-codec:1.10",
+      "org.apache.commons:commons-collections4:4.1",
+      "com.github.virtuald:curvesapi:1.04",
+      "org.apache.poi:poi:3.17",
+      "org.apache.poi:poi-ooxml:3.17",
+      "org.apache.poi:poi-ooxml-schemas:3.17",
+      "stax:stax-api:1.0.1",
+      "org.apache.xmlbeans:xmlbeans:2.6.0"
+    ]
+  }
+}
