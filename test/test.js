@@ -1,8 +1,8 @@
 var Files = Java.type("java.nio.file.Files");
 var Paths = Java.type("java.nio.file.Paths");
 
-let majesty = require('majesty')
-let xlsx = require('../dist/index.js');
+var majesty = require('majesty')
+var xlsx = require('../dist/index.js');
 
 function exec(describe, it, beforeEach, afterEach, expect, should, assert) {
 
@@ -88,13 +88,5 @@ function readAllBytes(path) {
     return Files.readAllBytes(Paths.get(path));
 }
 
-let res = majesty.run(exec)
-
-print(res.success.length, " scenarios executed with success and")
-print(res.failure.length, " scenarios executed with failure.\n")
-
-res.failure.forEach(function (fail) {
-    print("[" + fail.scenario + "] =>", fail.execption)
-})
-
+var res = majesty.run(exec)
 exit(res.failure.length);

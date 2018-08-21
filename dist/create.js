@@ -12,6 +12,7 @@ var DEFAULT_CURRENCY_FORMAT = 'R$ #,##0.00';
 
 var FONT_OPTION_NAMES = ['fontName', 'fontSize', 'bold', 'italic', 'striked', 'underline', 'doubleUnderline'];
 var FONTS_CACHE = {};
+var STYLES_CACHE = {};
 
 function create(rows, metadata) {
   metadata = Object.assign({
@@ -84,22 +85,33 @@ function create(rows, metadata) {
 function createCell(wb, sheetRow, cellIndex, style, createHelper, valueClass) {
   var cell = sheetRow.createCell(cellIndex);
 
-  var cellStyle = wb.createCellStyle();
-  updateCellStyle(wb, cellStyle, style, createHelper, valueClass);
-  cell.setCellStyle(cellStyle);
+  style.format = resolveDataFormat(style, valueClass);
+
+  if (Object.keys(style).length) {
+    var cacheKey = JSON.stringify(style);
+    var cellStyle = STYLES_CACHE[cacheKey];
+  
+    if (!cellStyle) {
+      cellStyle = wb.createCellStyle();
+      
+      updateCellStyle(wb, cellStyle, style, createHelper);
+      
+      STYLES_CACHE[cacheKey] = cellStyle;
+    }
+
+    cell.setCellStyle(cellStyle);
+  }
 
   return cell;
 }
 
-function updateCellStyle(wb, cellStyle, options, createHelper, valueClass) {
+function updateCellStyle(wb, cellStyle, options, createHelper) {
   if (!options) {
     return;
   }
 
-  var format = resolveDataFormat(options, valueClass);
-
-  if (format) {
-    cellStyle.setDataFormat(createHelper.createDataFormat().getFormat(format));
+  if (options.format) {
+    cellStyle.setDataFormat(createHelper.createDataFormat().getFormat(options.format));
   }
 
   var font = resolveFont(wb, options);
