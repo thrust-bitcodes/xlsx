@@ -66,8 +66,8 @@ function create(rows, metadata) {
 
         if (sheetHeader != null) {
 
-          if (headerStyleMD.height) {
-            sheetHeader.setHeight(rowStyle.height);
+          if (headerStyleMD && headerStyleMD.height) {
+            sheetHeader.setHeight(headerStyleMD.height);
           }
 
           var style = Object.assign({}, generalStyle, columnMD, headerStyleMD);
