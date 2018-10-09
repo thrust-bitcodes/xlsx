@@ -41,6 +41,13 @@ var rows = [{
   - horizontalAlignment: <String> - left, center, right, fill, justify
   - fontName: <String> Nome da fonte
   - fontSize: <Number> tamanho da fonte
+  - fontColor: <String> Cor da Fonte.
+  Acesse https://poi.apache.org/apidocs/org/apache/poi/ss/usermodel/IndexedColors.html para lista de opções
+  - size: <Number> Tamanho da coluna. É utilizado quando a opção autoSize possui o valor `false`,
+  - backgroundColor: <String> Cor de fundo da célula. Acesse https://poi.apache.org/apidocs/org/apache/poi/ss/usermodel/IndexedColors.html para lista de opções
+  - unlocked: <Boolean> Seta a célula como desbloqueada. Só funciona quando uma senha é atribuida para a planilha.
+  - verticalAlignment: <String> top, center, bottom
+  - formula: <Boolean> Quando ativo pega o valor da célula e aplica como uma fórmula
   - bold: <Boolean> se será negrito ou não.
   - italic: <Boolean> se será itálico ou não
   - striked: <Boolean> se terá strikethrough
@@ -71,6 +78,9 @@ var metadata = { //Opcional
         horizontalAlignment: 'center',
         fontName: 'Colibri'
     },
+    rowStyle: { // Estilos específica da linha
+        height: 1000 // Altura das linhas da planilha
+    }
     style: { //Estilo padrão que será aplicado a todas as celulas
         fontName: 'Courrier New',
     },
@@ -87,8 +97,15 @@ var metadata = { //Opcional
             striked: true,
         },
         salario: {
-            type: 'currency'
+            type: 'currency',
+        },
+        somatoria: {
+            formula: true
         }
+    },
+    sheetProperties : { // Configurações específicas da sheet
+      password: '123', // Senha, que ao ser setada bloqueia toda a planilha. Utilize a propriedade `unlocked` para desbloquear as células de uma coluna
+      name: 'Planilha 1' // nome da aba
     }
 };
 
@@ -113,7 +130,7 @@ var metadata = { //Opcional
  O primeiro argumento pode ser:
   -  <String> Path do arquivo
   - <java.io.InputStream> stream da planilha
-  - <byte[]> bytes da planilha 
+  - <byte[]> bytes da planilha
 */
 var jsonPlanilha = xlsx.read('./planilha.xlsx', metadata);
 ```
