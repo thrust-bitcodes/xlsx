@@ -18,6 +18,10 @@ var FONTS_CACHE = {};
 var STYLES_CACHE = {};
 
 function create(rows, metadata) {
+  
+  FONTS_CACHE = {};
+  STYLES_CACHE = {};
+  
   metadata = Object.assign({
     asByteArray: true,
     autoSize: true,
